@@ -1,0 +1,96 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Trắc nghiệm Tin học</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            text-align: center;
+            background-color: #f4f4f4;
+        }
+        .container {
+            max-width: 600px;
+            margin: auto;
+            background: white;
+            padding: 20px;
+            border-radius: 8px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+        }
+        .question {
+            font-size: 18px;
+            margin: 10px 0;
+        }
+        button {
+            padding: 10px 20px;
+            margin-top: 20px;
+            font-size: 16px;
+            background-color: #007bff;
+            color: white;
+            border: none;
+            cursor: pointer;
+        }
+        button:hover {
+            background-color: #0056b3;
+        }
+    </style>
+</head>
+<body>
+
+    <div class="container">
+        <h1>Bài Trắc Nghiệm Tin Học</h1>
+
+        <div id="quiz">
+            <div class="question">
+                <p><b>Câu 1:</b> HTML là viết tắt của gì?</p>
+                <input type="radio" name="q1" value="0"> HyperText Machine Learning<br>
+                <input type="radio" name="q1" value="1"> HyperText Markup Language<br>
+                <input type="radio" name="q1" value="0"> HighText Markup Language<br>
+            </div>
+
+            <div class="question">
+                <p><b>Câu 2:</b> CSS dùng để làm gì?</p>
+                <input type="radio" name="q2" value="1"> Định dạng giao diện website<br>
+                <input type="radio" name="q2" value="0"> Tạo database<br>
+                <input type="radio" name="q2" value="0"> Viết mã backend<br>
+            </div>
+
+            <button onclick="submitQuiz()">Nộp bài</button>
+        </div>
+    </div>
+
+    <script>
+        function submitQuiz() {
+            let score = 0;
+            let answers = [];
+
+            // Kiểm tra câu 1
+            let q1 = document.querySelector('input[name="q1"]:checked');
+            if (q1 && q1.value == "1") {
+                score++;
+                answers.push({ question: "Câu 1", correct: true });
+            } else {
+                answers.push({ question: "Câu 1", correct: false });
+            }
+
+            // Kiểm tra câu 2
+            let q2 = document.querySelector('input[name="q2"]:checked');
+            if (q2 && q2.value == "1") {
+                score++;
+                answers.push({ question: "Câu 2", correct: true });
+            } else {
+                answers.push({ question: "Câu 2", correct: false });
+            }
+
+            // Lưu kết quả vào localStorage
+            localStorage.setItem("quizScore", score);
+            localStorage.setItem("quizAnswers", JSON.stringify(answers));
+
+            // Chuyển sang trang kết quả
+window.location.href = "ketqua.html";
+        }
+    </script>
+
+</body>
+</html>

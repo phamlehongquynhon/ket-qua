@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Kết Quả Bài Kiểm Tra</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            text-align: center;
+            background-color: #f4f4f4;
+        }
+        .container {
+            max-width: 600px;
+            margin: auto;
+            background: white;
+            padding: 20px;
+            border-radius: 8px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+        }
+        .correct {
+            color: green;
+            font-weight: bold;
+        }
+        .incorrect {
+            color: red;
+            font-weight: bold;
+        }
+        .retry-btn {
+            padding: 10px 20px;
+            margin-top: 20px;
+            font-size: 16px;
+            background-color: #007bff;
+            color: white;
+            border: none;
+            cursor: pointer;
+        }
+        .retry-btn:hover {
+            background-color: #0056b3;
+        }
+    </style>
+</head>
+<body>
+
+    <div class="container">
+        <h1>Kết Quả Bài Kiểm Tra</h1>
+        <p>Điểm: <span id="score">0</span>/2</p>
+        <div id="result-list"></div>
+        <button class="retry-btn" onclick="retryQuiz()">Làm lại bài kiểm tra</button>
+    </div>
+
+    <script>
+        let score = localStorage.getItem("quizScore") || 0;
+        let answers = JSON.parse(localStorage.getItem("quizAnswers")) || [];
+
+        document.getElementById("score").innerText = score;
+
+        let resultList = document.getElementById("result-list");
+        answers.forEach((answer, index) => {
+            let resultItem = document.createElement("p");
+            resultItem.innerHTML = `<b>Câu ${index + 1}:</b> <span class="${answer.correct ? 'correct' : 'incorrect'}">${answer.correct ? '✔ Đúng' : '✘ Sai'}</span>`;
+            resultList.appendChild(resultItem);
+        });
+
+        function retryQuiz() {
+            window.location.href = "quiz.html";
+        }
+    </script>
+
+</body>
+</html>
